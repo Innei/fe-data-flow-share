@@ -7,8 +7,7 @@ import GradientTitle from "./components/GradientTitle";
 import ExampleSlides from "./examples/ExampleSlides";
 export default function Presentation() {
   const { reveal } = useContext(RevealContext);
-  const [presentationState, setPresentationState] =
-    useState<PresentationState>();
+  const [presentationState, setPresentationState] = useState<PresentationState>();
 
   useEffect(() => {
     if (reveal) {
@@ -30,7 +29,6 @@ export default function Presentation() {
       };
     }
   }, [reveal]);
-
   return (
     <PresentationContext.Provider value={presentationState}>
       <TitleSlide
@@ -39,16 +37,12 @@ export default function Presentation() {
         title={
           <div className="flex flex-col justify-between">
             <h1 className="mb-8 text-blue-500 text-8xl leading-tight font-black">
-              <GradientTitle
-                className="bg-gradient-to-b from-sky-500 to-blue-500"
-              >
+              <GradientTitle className="bg-gradient-to-b from-sky-500 to-blue-500">
                 {CONFIG.presentationTitle}
               </GradientTitle>
             </h1>
             <h2 className="text-5xl font-normal">{CONFIG.event}</h2>
-            <h2 className="text-4xl font-normal mb-0">
-              {CONFIG.authors.map((a) => a.name).join(", ")}
-            </h2>
+            <h2 className="text-4xl font-normal mb-0">{CONFIG.authors.map((a) => a.name).join(", ")}</h2>
             <a
               className="text-3xl inline-block w-fit mx-auto font-light tracking-tight mt-0"
               href={`mailto:${CONFIG.email}`}

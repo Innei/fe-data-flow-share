@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Latex from "../../components/Latex";
 import TitleContentSlide from "../../slide-templates/TitleContentSlide";
+import { motion } from "framer-motion";
+import { SlideContext } from "../../utils/slide-context";
 
 function roundNumber(n: number) {
   return Math.round(n * 100) / 100.0;
@@ -24,7 +26,19 @@ export default function InteractiveInstructionSlide() {
                 as interactive as you want
               </span>
             </li>
-            <li>Interactivity + Math = 💖</li>
+            <li>
+              Interactivity + Math ={" "}
+                  <motion.div
+                    className="inline-block"
+                    initial={{ scale: 1 }}
+                    animate={{rotate: `${count * 90}deg`}}
+                    transition={{
+                      duration: 1,
+                    }}
+                  >
+                    💖
+                  </motion.div>
+            </li>
             <br />
             <li>
               <button
@@ -35,16 +49,13 @@ export default function InteractiveInstructionSlide() {
               </button>
               <ul>
                 <li>
-                  You clicked the button{" "}
-                  <span className="text-blue-500">{count}</span> times already
+                  You clicked the button <span className="text-blue-500">{count}</span> times already
                 </li>
                 <li>
                   <Latex
                     highlightChange
                     highlightColor="#9a3389"
-                    math={String.raw`\sqrt{${count}} \approx ${roundNumber(
-                      Math.sqrt(count),
-                    )}`}
+                    math={String.raw`\sqrt{${count}} \approx ${roundNumber(Math.sqrt(count))}`}
                   />
                 </li>
                 <li>
