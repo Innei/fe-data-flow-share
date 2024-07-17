@@ -50,3 +50,7 @@ html.reveal-print .reveal .slides .pdf-page {
 .katex-display > .katex > .katex-html {
   width: fit-content;
 }
+
+.controls-arrow {
+  @apply text-secondary;
+}

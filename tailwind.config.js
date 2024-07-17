@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
+
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   important: true,
@@ -11,9 +12,9 @@ export default {
       {
         light: {
           'color-scheme': 'light',
-          primary: '#33A6B8',
+          primary: '#2a76dd',
           secondary: '#A8D8B9',
-          accent: '#33A6B8',
+          accent: '#FFCADA',
           'accent-content': '#fafafa',
           neutral: '#C7C7CC',
           'base-100': '#fff',
@@ -37,5 +38,7 @@ export default {
         ...getIconCollections(['mingcute']),
       },
     }),
+    require('./cssAsPlugin'),
+    require('./reveal-atom.css'),
   ],
 }

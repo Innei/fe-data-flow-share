@@ -15,6 +15,14 @@ export default function Page() {
             code="const [count, setCount] = useState(0)"
             language="javascript"
           />
+
+          <div className="fragment">
+            <p className="text-xl">通过 Props 向下传递到子组件。</p>
+            <ShikiHighLighter
+              code="<ChildComponent count={count} />"
+              language="jsx"
+            />
+          </div>
         </div>
       }
     />
