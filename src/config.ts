@@ -1,38 +1,35 @@
-import RevealZoom from "reveal.js/plugin/zoom/zoom";
-import RevealSpeakerNotes from "reveal.js/plugin/notes/notes";
+import RevealZoom from 'reveal.js/plugin/zoom/zoom'
+import RevealSpeakerNotes from 'reveal.js/plugin/notes/notes'
 
 type PresentationConfig = {
   // The title of the presentation
-  presentationTitle: string;
+  presentationTitle: string
   // An array of the authors (each with a name and an optional `presenting` indicator)
   authors: {
-    name: string;
+    name: string
     // Optional attribute `presenting` indicates if the name in the footer should be underlines
     // it can either be provided as a boolean (e.g., presenting: true)
     // or a function, which given a slideNumber (1..n) decides if the author is presenting on that slide
-    presenting?: boolean | ((slideNumber: number) => boolean);
+    presenting?: boolean | ((slideNumber: number) => boolean)
     // Any other attributes are allowed as well (use as you see fit)
-    [x: string]: unknown;
-  }[];
+    [x: string]: unknown
+  }[]
   // The RevealJS Options
   // Reference: https://revealjs.com/config/
-  revealOptions: Reveal.Options | undefined;
+  revealOptions: Reveal.Options | undefined
   // Any other attributes are allowed as well (use as you see fit)
-  [x: string | number | symbol]: unknown;
-};
+  [x: string | number | symbol]: unknown
+}
 
 export const CONFIG = {
-  presentationTitle: "Demo Presentation Template",
-  email: "mail@example.com",
-  event: "Example Presentation Conference",
+  presentationTitle: '前端数据管理的几种方式',
+  email: 'i@innei.in',
+  homepage: 'https://innei.in',
+  date: '2024.07',
   authors: [
     {
-      name: "First Author",
+      name: 'Innei',
       presenting: (slideNumber) => slideNumber < 10,
-    },
-    {
-      name: "Second Author",
-      presenting: (slideNumber) => slideNumber >= 10,
     },
   ],
 
@@ -52,14 +49,14 @@ export const CONFIG = {
     controlsTutorial: true,
 
     // Determines where controls appear, "edges" or "bottom-right"
-    controlsLayout: "bottom-right",
+    controlsLayout: 'bottom-right',
 
     // Visibility rule for backwards navigation arrows; "faded", "hidden"
     // or "visible"
-    controlsBackArrows: "faded",
+    controlsBackArrows: 'faded',
 
     // Display a presentation progress bar
-    progress: true,
+    progress: false,
 
     // Display the page number of the current slide
     // - true:    Show slide number
@@ -81,15 +78,15 @@ export const CONFIG = {
     // - "all":      Always show the slide number
     // - "print":    Only when printing to PDF
     // - "speaker":  Only in the speaker view
-    showSlideNumber: "all",
+    showSlideNumber: 'all',
 
     // Use 1 based indexing for # links to match slide number (default is zero
     // based)
-    hashOneBasedIndex: false,
+    hashOneBasedIndex: true,
 
     // Add the current slide number to the URL hash so that reloading the
     // page/copying the URL will return you to the same slide
-    hash: false,
+    hash: true,
 
     // Flags if we should monitor the hash and change slides accordingly
     respondToHashChanges: true,
@@ -152,7 +149,7 @@ export const CONFIG = {
     // If you're on slide 1.3 and navigate right, you will normally move
     // from 1.3 -> 2.1. If "grid" is used, the same navigation takes you
     // from 1.3 -> 2.3.
-    navigationMode: "default",
+    navigationMode: 'default',
 
     // Randomizes the order of slides each time the presentation loads
     shuffle: false,
@@ -200,7 +197,7 @@ export const CONFIG = {
 
     // Default settings for our auto-animate transitions, can be
     // overridden per-slide or per-element via data arguments
-    autoAnimateEasing: "ease-out",
+    autoAnimateEasing: 'ease-out',
     autoAnimateDuration: 0.6,
     autoAnimateUnmatched: false,
 
@@ -208,18 +205,18 @@ export const CONFIG = {
     // is matched separately so there's no need to include styles
     // like top/right/bottom/left, width/height or margin.
     autoAnimateStyles: [
-      "opacity",
-      "color",
-      "background-color",
-      "padding",
-      "font-size",
-      "line-height",
-      "letter-spacing",
-      "border-width",
-      "border-color",
-      "border-radius",
-      "outline",
-      "outline-offset",
+      'opacity',
+      'color',
+      'background-color',
+      'padding',
+      'font-size',
+      'line-height',
+      'letter-spacing',
+      'border-width',
+      'border-color',
+      'border-radius',
+      'outline',
+      'outline-offset',
     ],
 
     // Controls automatic progression to the next slide
@@ -258,13 +255,13 @@ export const CONFIG = {
     focusBodyOnPageVisibilityChange: true,
 
     // Transition style
-    transition: "none", // none/fade/slide/convex/concave/zoom
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
 
     // Transition speed
-    transitionSpeed: "fast", // default/fast/slow
+    transitionSpeed: 'fast', // default/fast/slow
 
     // Transition style for full page slide backgrounds
-    backgroundTransition: "zoom", // none/fade/slide/convex/concave/zoom
+    backgroundTransition: 'zoom', // none/fade/slide/convex/concave/zoom
 
     // The maximum number of pages a single slide can expand onto when printing
     // to PDF, unlimited by default
@@ -289,7 +286,7 @@ export const CONFIG = {
     mobileViewDistance: 2,
 
     // The display mode that will be used to show slides
-    display: "block",
+    display: 'block',
 
     // Hide cursor if inactive
     hideInactiveCursor: true,
@@ -297,4 +294,4 @@ export const CONFIG = {
     // Time before the cursor is hidden (in ms)
     hideCursorTime: 5000,
   },
-} satisfies PresentationConfig;
+} satisfies PresentationConfig

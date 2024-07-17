@@ -1,20 +1,20 @@
-import { Fragment, useContext, useEffect, useState } from "react";
-import { CONFIG } from "../../config";
-import logoURL from "./logo.svg";
-import { isPDFExport } from "../../reveal/reaveal";
-import { PresentationContext } from "../../utils/slide-context";
+import { Fragment, useContext, useEffect, useState } from 'react'
+import { CONFIG } from '../../config'
+import logoURL from './logo.svg'
+import { isPDFExport } from '../../reveal/reaveal'
+import { PresentationContext } from '../../utils/slide-context'
 
 export default function Footer({
   slideIndex,
 }: {
-  slideIndex: number | undefined;
+  slideIndex: number | undefined
 }) {
-  const presentationState = useContext(PresentationContext);
+  const presentationState = useContext(PresentationContext)
   const [slideState, setSlideState] = useState<{
-    index: number;
-    dots: { number: number; filled: boolean }[];
-  }>();
-  const currentSlideProgress = 0.5;
+    index: number
+    dots: { number: number; filled: boolean }[]
+  }>()
+  const currentSlideProgress = 0.5
 
   useEffect(() => {
     if (presentationState && slideIndex !== undefined) {
@@ -24,29 +24,22 @@ export default function Footer({
           number: i + 1,
           filled: i <= slideIndex,
         })),
-      });
+      })
     }
-  }, [presentationState, slideIndex]);
+  }, [presentationState, slideIndex])
 
   if (
     slideState === undefined ||
     slideIndex === undefined ||
     presentationState === undefined
   ) {
-    return <div className=""></div>;
+    return <div className=""></div>
   }
 
   return (
     <div
       className={`h-[4rem] px-4 flex gap-2 items-center justify-between text-sm w-full transition-none"`}
     >
-      <img
-        style={{ transition: "none" }}
-        alt="Logo"
-        className="object-contain h-[4rem] my-0 transition-none"
-        src={logoURL}
-        data-auto-animate-unmatched="true"
-      />
       <div className=" justify-center flex flex-col w-fit text-left transition-none">
         <span className="block font-semibold">{CONFIG.presentationTitle}</span>
         <div className="flex w-full justify-between items-end">
@@ -54,20 +47,26 @@ export default function Footer({
             <span>
               {CONFIG.authors.map((author, i) => (
                 <Fragment key={i}>
-                  <span
-                    className={
-                      (
-                        typeof author.presenting === "function"
-                          ? author.presenting(slideIndex + 1)
-                          : author.presenting
-                      )
-                        ? "underline decoration-slate-400"
-                        : ""
-                    }
+                  <a
+                    href={CONFIG.homepage}
+                    className="text-inherit"
+                    target="_blank"
                   >
-                    {author.name}
-                  </span>
-                  {i < CONFIG.authors.length - 1 && ", "}
+                    <span
+                      className={
+                        (
+                          typeof author.presenting === 'function'
+                            ? author.presenting(slideIndex + 1)
+                            : author.presenting
+                        )
+                          ? 'underline decoration-slate-400'
+                          : ''
+                      }
+                    >
+                      {author.name}
+                    </span>
+                  </a>
+                  {i < CONFIG.authors.length - 1 && ', '}
                 </Fragment>
               ))}
             </span>
@@ -78,7 +77,7 @@ export default function Footer({
               </a>
             </span>
             <span>|</span>
-            <span>{CONFIG.event}</span>
+            <span>{CONFIG.date}</span>
           </div>
         </div>
       </div>
@@ -93,7 +92,7 @@ export default function Footer({
           />
         )}
     </div>
-  );
+  )
 }
 
 function PageDots({
@@ -102,56 +101,56 @@ function PageDots({
   currentSlideProgress,
   currentSlideIndex,
 }: {
-  dots: { number: number; filled: boolean }[];
-  reveal: Reveal.Api;
-  currentSlideProgress: number;
-  currentSlideIndex: number;
+  dots: { number: number; filled: boolean }[]
+  reveal: Reveal.Api
+  currentSlideProgress: number
+  currentSlideIndex: number
 }) {
-  const isPDF = isPDFExport();
+  const isPDF = isPDFExport()
 
   function getOnlyRelevantDots() {
-    const numDotsToShowPerSide = 5;
-    let startIndex = Math.max(currentSlideIndex - numDotsToShowPerSide, 0);
+    const numDotsToShowPerSide = 5
+    let startIndex = Math.max(currentSlideIndex - numDotsToShowPerSide, 0)
     let endIndex = Math.min(
       currentSlideIndex + numDotsToShowPerSide,
       dots.length - 1,
-    );
+    )
     if (endIndex - startIndex < 2 * numDotsToShowPerSide) {
       if (startIndex > 0) {
-        startIndex = Math.max(endIndex - 2 * numDotsToShowPerSide, 0);
+        startIndex = Math.max(endIndex - 2 * numDotsToShowPerSide, 0)
       } else if (endIndex < dots.length) {
         endIndex = Math.min(
           startIndex + 2 * numDotsToShowPerSide,
           dots.length - 1,
-        );
+        )
       }
     }
-    return dots.slice(startIndex, endIndex + 1);
+    return dots.slice(startIndex, endIndex + 1)
   }
 
-  const allDotsShown = dots.length <= 24;
-  const dotsToShow = allDotsShown ? dots : getOnlyRelevantDots();
-  const dotsHiddenBefore = dotsToShow[0].number > 1;
-  const dotsHiddenAfter =
-    dotsToShow[dotsToShow.length - 1].number < dots.length;
+  const allDotsShown = dots.length <= 24
+  const dotsToShow = allDotsShown ? dots : getOnlyRelevantDots()
+  const dotsHiddenBefore = dotsToShow[0].number > 1
+  const dotsHiddenAfter = dotsToShow[dotsToShow.length - 1].number < dots.length
+  return null
 
   return (
     <div
       className={
-        "transition-none mb-2 mr-2 mt-auto flex gap-x-1 gap-y-0.5 flex-wrap flex-shrink-0 max-w-[22%]"
+        'transition-none mb-2 mr-2 mt-auto flex gap-x-1 gap-y-0.5 flex-wrap flex-shrink-0 max-w-[22%]'
       }
     >
       {!allDotsShown && (
         <span className="mt-2 block text-gray-400 -mr-0.5 text-center text-xs w-[0.5rem] ">
-          {dotsHiddenBefore ? "..." : ""}
+          {dotsHiddenBefore ? '...' : ''}
         </span>
       )}
       {dotsToShow.map((dot, i) => (
         <a
           onClick={(ev) => {
             if (!isPDF) {
-              ev.preventDefault();
-              reveal?.slide(dot.number - 1);
+              ev.preventDefault()
+              reveal?.slide(dot.number - 1)
             }
           }}
           key={i}
@@ -166,14 +165,14 @@ function PageDots({
                   : 1,
             }}
             className={`block relative rounded-full w-2 h-2 ${
-              dot.filled ? "bg-blue-300" : "bg-gray-200"
-            } ${dot.number - 1 === currentSlideIndex ? " scale-125" : ""}`}
+              dot.filled ? 'bg-blue-300' : 'bg-gray-200'
+            } ${dot.number - 1 === currentSlideIndex ? ' scale-125' : ''}`}
           />
           <span
             className={`mt-[1px] block text-xs opacity-100 font-semibold !transition-none ${
               dot.number - 1 === currentSlideIndex
-                ? "text-blue-700 scale-125"
-                : "text-gray-500"
+                ? 'text-blue-700 scale-125'
+                : 'text-gray-500'
             }`}
           >
             {dot.number}
@@ -182,9 +181,9 @@ function PageDots({
       ))}
       {!allDotsShown && (
         <span className="mt-2 block text-gray-400 -ml-[0.15rem] text-center text-xs w-[0.5rem] ">
-          {dotsHiddenAfter ? "..." : ""}
+          {dotsHiddenAfter ? '...' : ''}
         </span>
       )}
     </div>
-  );
+  )
 }
