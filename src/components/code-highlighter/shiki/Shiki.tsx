@@ -117,9 +117,11 @@ export const ShikiHighLighter: FC<ShikiProps> = (props) => {
 
   if (!loaded) {
     return (
-      <pre className={classNames(styles['shiki-wrapper'], className)}>
-        <code>{code}</code>
-      </pre>
+      <div className={styles['shiki-wrapper']}>
+        <pre className={classNames(className)}>
+          <code>{code}</code>
+        </pre>
+      </div>
     )
   }
   return <ShikiCode {...props} codeTheme={codeTheme} />
@@ -148,9 +150,11 @@ const ShikiCode: FC<
 
   if (!rendered) {
     return (
-      <pre className={classNames(styles['shiki-wrapper'], className)}>
-        <code>{code}</code>
-      </pre>
+      <div className={styles['shiki-wrapper']}>
+        <pre className={classNames(className)}>
+          <code>{code}</code>
+        </pre>
+      </div>
     )
   }
   return (
