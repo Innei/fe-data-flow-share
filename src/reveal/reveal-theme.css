@@ -241,12 +241,10 @@ body {
 }
 
 .reveal pre code {
-  display: block;
-  padding: 5px;
-  overflow: auto;
-  max-height: 400px;
-  word-wrap: normal;
+  display: none;
   font-family: operator mono;
+  max-height: 400px;
+  overflow: auto;
 }
 
 .reveal .code-wrapper {

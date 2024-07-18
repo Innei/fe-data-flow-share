@@ -11,16 +11,16 @@
 
     pre {
       @apply !m-0 overflow-auto p-2 !shadow-none w-full;
-
-      font-size: min(0.85em, 16px);
     }
 
     pre code {
-      @apply flex flex-col;
+      @apply !flex flex-col;
+      font-size: max(min(0.75em, 16px), 16px);
+      line-height: 1.3;
     }
 
     .line {
-      @apply block leading-[1rem];
+      @apply block;
 
       & > span:last-child {
         @apply mr-5;
