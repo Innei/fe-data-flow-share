@@ -20,6 +20,8 @@ type PresentationConfig = {
   // Any other attributes are allowed as well (use as you see fit)
   [x: string | number | symbol]: unknown
 }
+import Markdown from 'reveal.js/plugin/markdown/markdown'
+import Search from 'reveal.js/plugin/search/search'
 
 export const CONFIG = {
   presentationTitle: '前端数据管理的几种方式',
@@ -39,14 +41,14 @@ export const CONFIG = {
     width: 1100,
     height: 700,
 
-    plugins: [RevealZoom, RevealSpeakerNotes],
+    plugins: [RevealZoom, RevealSpeakerNotes, Markdown, Search],
 
     // Display presentation control arrows
     controls: true,
 
     // Help the user learn the controls by providing hints, for example by
     // bouncing the down arrow when they first encounter a vertical slide
-    controlsTutorial: true,
+    controlsTutorial: false,
 
     // Determines where controls appear, "edges" or "bottom-right"
     controlsLayout: 'bottom-right',
@@ -56,7 +58,7 @@ export const CONFIG = {
     controlsBackArrows: 'faded',
 
     // Display a presentation progress bar
-    progress: false,
+    progress: true,
 
     // Display the page number of the current slide
     // - true:    Show slide number

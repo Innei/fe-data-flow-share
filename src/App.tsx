@@ -1,12 +1,18 @@
-import { Suspense, lazy, useEffect, useState } from 'react'
+import React, {
+  Suspense,
+  lazy,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from 'react'
 import { RevealContext, initReveal } from './reveal/reaveal'
 // We do not need to reset.css style from revealJS as the Tailwind CSS reset styles are already applied
 // import "reveal.js/dist/reset.css";
-import 'reveal.js/dist/reveal.css'
 import 'katex/dist/katex.min.css'
-import './reveal/reveal-theme.css'
-import { CONFIG } from './config'
+import 'reveal.js/dist/reveal.css'
 import Presentation from './Presentation'
+import { CONFIG } from './config'
+import './reveal/reveal-theme.css'
 
 import { BlurDotBg } from './color4bg/AbstractBackground/BlurDotBg.js'
 
@@ -14,16 +20,27 @@ function App() {
   const [reveal, setReveal] = useState<Reveal.Api>()
   const ExcalidrawWrapper = lazy(() => import('./components/ExcalidrawWrapper'))
 
+  const bgRef = React.useRef<HTMLDivElement>(null)
   useEffect(() => {
     const r = initReveal(CONFIG.revealOptions)
     document.title = CONFIG.presentationTitle
     setReveal(r)
+  }, [])
 
-    new BlurDotBg({
+  useLayoutEffect(() => {
+    if (!bgRef.current) return
+    const $bg = bgRef.current
+    const bg = new BlurDotBg({
       dom: 'bg',
       colors: ['#FFCADA', '#FFD4E2', '#FFDCE8', '#FFE9EA'],
       loop: true,
     })
+
+    const observer = new ResizeObserver(() => {
+      bg.resize()
+    })
+
+    observer.observe($bg)
   }, [])
 
   return (
@@ -38,7 +55,7 @@ function App() {
         >
           <ExcalidrawWrapper />
         </Suspense>
-        <div id="bg" className="fixed z-0 inset-0"></div>
+        <div id="bg" ref={bgRef} className="fixed z-0 inset-0"></div>
         <div className="reveal">
           <div className="slides">
             <Presentation />

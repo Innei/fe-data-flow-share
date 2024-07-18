@@ -1,7 +1,7 @@
 import { ReactNode, useContext, useEffect, useRef, useState } from 'react'
 import Footer from '../components/footer/Footer'
 import classNames from 'classnames'
-import { isPDFExport } from '../reveal/reaveal'
+import { RevealContext, isPDFExport } from '../reveal/reaveal'
 import { PresentationContext, SlideContext } from '../utils/slide-context'
 import { NEXT_KEYCODES, PREV_KEYCODES } from '../utils/keys'
 
