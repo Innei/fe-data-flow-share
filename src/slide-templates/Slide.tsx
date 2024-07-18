@@ -12,6 +12,8 @@ export interface SlideProps {
   padding?: boolean
   backgroundImage?: string
   animateKeyFrames?: number
+
+  autoAnimate?: boolean
 }
 const isPDF = isPDFExport()
 
@@ -134,6 +136,7 @@ export default function Slide(props: SlideProps) {
       }}
     >
       <section
+        data-auto-animate={props.autoAnimate}
         data-background-image={props.backgroundImage}
         ref={sectionRef}
         className={classNames('w-full h-full', {
