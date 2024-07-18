@@ -1,14 +1,14 @@
-import { ReactNode } from 'react'
+import { ReactNode, type FC } from 'react'
 import Slide, { SlideProps } from './Slide'
 
-interface TitleContentSlideProps {
+export interface TitleContentSlideProps {
   title: ReactNode
   content: ReactNode
   slideProps?: Partial<SlideProps>
   autoAnimate?: boolean
 }
 
-export default function TitleContentSlide(props: TitleContentSlideProps) {
+const TitleContentSlide: FC<TitleContentSlideProps> = (props) => {
   return (
     <Slide
       textAlign="left"
@@ -22,3 +22,5 @@ export default function TitleContentSlide(props: TitleContentSlideProps) {
     </Slide>
   )
 }
+
+export default TitleContentSlide

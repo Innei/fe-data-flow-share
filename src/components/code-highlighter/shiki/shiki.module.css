@@ -12,7 +12,7 @@
     pre {
       @apply !m-0 overflow-auto p-2 !shadow-none w-full;
 
-      font-size: min(1em, 16px);
+      font-size: min(0.85em, 16px);
     }
 
     pre code {
@@ -20,7 +20,7 @@
     }
 
     .line {
-      @apply block leading-5;
+      @apply block leading-[1rem];
 
       & > span:last-child {
         @apply mr-5;

@@ -5,6 +5,7 @@ import TitleSlide from './slide-templates/TitleSlide'
 import { RevealContext } from './reveal/reaveal'
 import { PresentationContext, PresentationState } from './utils/slide-context'
 import GradientTitle from './components/GradientTitle'
+import { SlideSymbol, type Slide } from './utils/define-slide'
 
 const slides = import.meta.glob('./slides/*.tsx', { eager: true })
 const Slides = () => {
@@ -13,7 +14,14 @@ const Slides = () => {
       {Object.keys(slides).map((slide) => {
         // @ts-expect-error
         const Slide = slides[slide].default
-        return <Slide key={slide} />
+
+        if (typeof Slide === 'function') {
+          return <Slide key={slide} />
+        }
+        if (typeof Slide === 'object' && Slide && SlideSymbol in Slide) {
+          const { element } = Slide as Slide
+          return element
+        }
       })}
     </>
   )
