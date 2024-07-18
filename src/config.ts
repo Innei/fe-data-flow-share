@@ -29,7 +29,7 @@ export const CONFIG = {
   authors: [
     {
       name: 'Innei',
-      presenting: (slideNumber) => slideNumber < 10,
+      presenting: true,
     },
   ],
 
@@ -95,7 +95,7 @@ export const CONFIG = {
     // jumpToSlide: true,
 
     // Push each slide change to the browser history.  Implies `hash: true`
-    history: false,
+    history: true,
 
     // Enable keyboard shortcuts for navigation
     keyboard: true,

@@ -154,13 +154,7 @@ const ShikiCode: FC<
     )
   }
   return (
-    <div
-      className={classNames(
-        'group relative',
-        styles['shiki-wrapper'],
-        className,
-      )}
-    >
+    <div className={classNames('group relative', className)}>
       <div
         dangerouslySetInnerHTML={{ __html: rendered }}
         className={classNames(

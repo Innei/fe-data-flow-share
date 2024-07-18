@@ -36,6 +36,10 @@ So complex architecture, the advantage what?
 
 Follow example, and data flow design.
 
+Local Search / Offline first
+
+FIXME: 数据一致性 (unread count, etc.)
+
 What's next?
 
 Local first.

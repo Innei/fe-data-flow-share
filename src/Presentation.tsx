@@ -28,6 +28,7 @@ export default function Presentation() {
       const listener = () => {
         const allSlides = reveal?.getSlides()
         const index = allSlides.indexOf(reveal.getCurrentSlide())
+
         if (allSlides && index !== undefined) {
           setPresentationState({
             allSlides: allSlides,
@@ -43,6 +44,7 @@ export default function Presentation() {
       }
     }
   }, [reveal])
+
   return (
     <PresentationContext.Provider value={presentationState}>
       <TitleSlide

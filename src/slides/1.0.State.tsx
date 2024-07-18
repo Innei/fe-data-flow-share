@@ -23,6 +23,16 @@ export default function Page() {
               language="jsx"
             />
           </div>
+
+          <div className="fragment">
+            <p className="text-xl">
+              Props 透传层级太深，于是我们使用 Context 传递。
+            </p>
+            <ShikiHighLighter
+              code="<Context.Provider value={count}>"
+              language="jsx"
+            />
+          </div>
         </div>
       }
     />
