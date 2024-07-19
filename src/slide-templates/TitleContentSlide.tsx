@@ -17,7 +17,7 @@ const TitleContentSlide: FC<TitleContentSlideProps> = (props) => {
       {...props.slideProps}
     >
       {props.title}
-      <div className="h-[2rem]"></div>
+
       {props.content}
     </Slide>
   )
