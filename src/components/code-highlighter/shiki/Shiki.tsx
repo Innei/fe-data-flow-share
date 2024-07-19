@@ -1,34 +1,43 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { FC } from 'react'
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
-import type {
-  BundledLanguage,
-  BundledTheme,
-  DynamicImportLanguageRegistration,
-  DynamicImportThemeRegistration,
+import {
+  type BundledLanguage,
+  type BundledTheme,
+  type DynamicImportLanguageRegistration,
+  type DynamicImportThemeRegistration,
 } from 'shiki'
+import 'shiki-magic-move/dist/style.css'
+import { ShikiMagicMove } from 'shiki-magic-move/react'
 import { createHighlighterCore } from 'shiki/core'
 import { default as getWasm } from 'shiki/wasm'
 
+import classNames from 'classnames'
 import { CopyButton } from '../copy-button'
 import { shikiTransformers } from './shared'
 import styles from './shiki.module.css'
-import classNames from 'classnames'
 
 const shiki = await createHighlighterCore({
-  themes: [import('shiki/themes/github-dark.mjs')],
-  langs: [],
+  themes: [import('shiki/themes/github-light.mjs')],
+  langs: [
+    import('shiki/langs/javascript.mjs'),
+    import('shiki/langs/typescript.mjs'),
+  ],
   loadWasm: getWasm,
 })
 
 export interface ShikiProps {
   language: string | undefined
-  code: string
+  code?: string
 
   attrs?: string
   className?: string
 
   theme?: string
+
+  children?: string
+
+  magicMove?: boolean
 }
 
 let langModule: Record<
@@ -39,7 +48,8 @@ let themeModule: Record<BundledTheme, DynamicImportThemeRegistration> | null =
   null
 const codeTheme = 'github-light'
 export const ShikiHighLighter: FC<ShikiProps> = (props) => {
-  const { code, language, className } = props
+  const { code: _code, children, language, className } = props
+  const code = _code || children?.toString() || ''
   const loadThemesRef = useRef([] as string[])
   const loadLanguagesRef = useRef([] as string[])
 
@@ -124,21 +134,24 @@ export const ShikiHighLighter: FC<ShikiProps> = (props) => {
       </div>
     )
   }
-  return <ShikiCode {...props} codeTheme={codeTheme} />
+  return <ShikiCode {...props} code={code} codeTheme={codeTheme} />
 }
 
 const ShikiCode: FC<
   ShikiProps & {
     codeTheme: string
   }
-> = ({ code, language, codeTheme, className }) => {
+> = ({ code, language, codeTheme, className, attrs, magicMove }) => {
   const rendered = useMemo(() => {
     try {
-      return shiki.codeToHtml(code, {
+      return shiki.codeToHtml(code!, {
         lang: language!,
         themes: {
           dark: codeTheme,
           light: codeTheme,
+        },
+        meta: {
+          __raw: attrs,
         },
         transformers: shikiTransformers,
       })
@@ -159,16 +172,37 @@ const ShikiCode: FC<
   }
   return (
     <div className={classNames('group relative', className)}>
-      <div
-        dangerouslySetInnerHTML={{ __html: rendered }}
-        className={classNames(
-          'group relative',
-          styles['shiki-wrapper'],
-          className,
-        )}
-      />
+      {magicMove ? (
+        <div
+          className={classNames(
+            'group relative',
+            styles['shiki-wrapper'],
+            className,
+          )}
+        >
+          <ShikiMagicMove
+            code={code!}
+            highlighter={shiki}
+            lang={language!}
+            theme={codeTheme}
+            options={{
+              duration: 800,
+              stagger: 0.3,
+            }}
+          />
+        </div>
+      ) : (
+        <div
+          dangerouslySetInnerHTML={{ __html: rendered }}
+          className={classNames(
+            'group relative',
+            styles['shiki-wrapper'],
+            className,
+          )}
+        />
+      )}
       <CopyButton
-        value={code}
+        value={code!}
         className="absolute right-1 top-1 opacity-0 duration-200 group-hover:opacity-100"
       />
     </div>
