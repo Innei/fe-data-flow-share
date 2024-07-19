@@ -152,7 +152,7 @@ const codes2 = [
 ]
 
 export default defineDefaultSlide({
-  title: 'Data Store',
+  title: 'Update Data in the Store',
   content: (
     <div className="h-full w-full flex flex-col">
       <p>
