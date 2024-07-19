@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react'
-import { ShikiHighLighter } from '../components/code-highlighter'
-import { defineDefaultSlide } from '../utils/define-slide'
+import { Excalidraw } from '@excalidraw/excalidraw'
 import { useModalStack } from 'rc-modal-sheet'
 import { StyledButton } from 'shiro-rc'
-import { Excalidraw } from '@excalidraw/excalidraw'
+import { defineDefaultSlide } from '../utils/define-slide'
 
 const codes1 = [
   `{
@@ -96,8 +94,8 @@ const { title, } = useFeedStore(useShallow((state) => ({ title: state.data[feed.
 `.trim(),
 ]
 
-import Draw from './code/draw3.json'
 import { AnimatedCode } from '../components/code-highlighter/shiki/AnimatedCode'
+import Draw from './code/draw3.json'
 const Present = () => {
   const { present } = useModalStack()
 
