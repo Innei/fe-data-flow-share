@@ -112,12 +112,15 @@ export default defineDefaultSlide({
 })`}
       </ShikiHighLighter>
 
-      <p className="fragment">
+      <p className="fragment text-sm mb-0">
         还好，这里我们早期的需求，也许只有两个 Query
-        引用了同一数据，我们明确的知道，我们应该去更新哪些 Query 的数据？
+        引用了同一数据，我们明确的知道，我们应该去更新哪些 Query 的数据。
         <br />
-        随着时间的推移，越来的越多的模块和功能的加入，和开发人员的加入，你还能分辨出到底哪些
-        Query 的数据需要更新吗？
+        随着时间的推移，越来的越多的模块和功能的加入，和开发人员的加入，
+        <span className="text-red-500 font-bold">
+          你还能分辨出到底哪些 Query 的数据需要更新吗
+        </span>
+        ？
       </p>
 
       <Present />

@@ -19,7 +19,7 @@ export default {
           'color-scheme': 'light',
           primary: '#2a76dd',
           secondary: '#A8D8B9',
-          accent: '#FFCADA',
+          accent: '#FFAAAA',
           'accent-content': '#fafafa',
           neutral: '#C7C7CC',
           'base-100': '#fff',

@@ -253,9 +253,6 @@ body {
 
 .reveal pre code {
   display: none;
-
-  max-height: 400px;
-  overflow: auto;
 }
 
 .reveal .code-wrapper {
