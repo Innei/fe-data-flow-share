@@ -1,31 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useContext, useEffect, useState } from 'react'
-import { CONFIG } from './config'
-import TitleSlide from './slide-templates/TitleSlide'
-import { RevealContext } from './reveal/reaveal'
-import { PresentationContext, PresentationState } from './utils/slide-context'
 import GradientTitle from './components/GradientTitle'
-import { SlideSymbol, type Slide } from './utils/define-slide'
+import { CONFIG } from './config'
+import { RevealContext } from './reveal/reaveal'
+import TitleSlide from './slide-templates/TitleSlide'
+import { parseSlides } from './utils/parse-glob-slides'
+import { PresentationContext, PresentationState } from './utils/slide-context'
 
 const slides = import.meta.glob('./slides/*.tsx', { eager: true })
-const Slides = () => {
-  return (
-    <>
-      {Object.keys(slides).map((slide) => {
-        // @ts-expect-error
-        const Slide = slides[slide].default
-
-        if (typeof Slide === 'function') {
-          return <Slide key={slide} />
-        }
-        if (typeof Slide === 'object' && Slide && SlideSymbol in Slide) {
-          const { element } = Slide as Slide
-          return element
-        }
-      })}
-    </>
-  )
-}
+const Slides = parseSlides(slides)
 export default function Presentation() {
   const { reveal } = useContext(RevealContext)
   const [presentationState, setPresentationState] =
