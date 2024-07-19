@@ -13,8 +13,12 @@ import 'reveal.js/dist/reveal.css'
 import Presentation from './Presentation'
 import { CONFIG } from './config'
 import './reveal/reveal-theme.css'
+import { Configure } from 'shiro-rc'
+import 'shiro-rc/dist/tw.css'
 
 import { BlurDotBg } from './color4bg/AbstractBackground/BlurDotBg.js'
+import { ModalStackContainer } from 'rc-modal-sheet/motion'
+import { motion } from 'framer-motion'
 
 function App() {
   const [reveal, setReveal] = useState<Reveal.Api>()
@@ -58,7 +62,11 @@ function App() {
         <div id="bg" ref={bgRef} className="fixed z-0 inset-0"></div>
         <div className="reveal">
           <div className="slides">
-            <Presentation />
+            <ModalStackContainer>
+              <Configure m={motion}>
+                <Presentation />
+              </Configure>
+            </ModalStackContainer>
           </div>
         </div>
       </RevealContext.Provider>

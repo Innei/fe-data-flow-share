@@ -3,6 +3,7 @@ import { defineDefaultSlide } from '../utils/define-slide'
 
 export default defineDefaultSlide({
   title: 'Tanstack Query 的乐观更新',
+  autoAnimate: true,
   content: (
     <div className="h-full w-full">
       <p>服务端经常返回一些嵌套数据。例如下面的例子。</p>

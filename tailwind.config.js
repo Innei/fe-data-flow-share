@@ -2,7 +2,12 @@
 import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
 
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/rc-modal-sheet/**/*.js',
+    './node_modules/shiro-rc/dist/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
   important: true,
   theme: {
     extend: {},
