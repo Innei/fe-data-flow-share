@@ -44,7 +44,7 @@ export default function Presentation() {
         title={
           <div className="flex flex-col justify-between items-center">
             <h1 className="mb-8 text-blue-500 text-8xl leading-tight font-black">
-              <GradientTitle className="bg-gradient-to-b from-sky-500 to-blue-500">
+              <GradientTitle className="bg-gradient-to-b from-sky-500 to-blue-500 !font-medium !text-[82px]">
                 {CONFIG.presentationTitle}
               </GradientTitle>
             </h1>

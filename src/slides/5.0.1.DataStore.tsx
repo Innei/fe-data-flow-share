@@ -130,7 +130,7 @@ export default defineDefaultSlide({
         <AnimatedCode codes={codes2} language="typescript" />
       </div>
 
-      <p className="flex flex-col text-xs absolute bottom-0 left-1/2 -translate-x-1/2">
+      <p className="flex flex-col !text-xs absolute -bottom-3 left-1/2 -translate-x-1/2">
         参考：
         <a
           href="https://innei.in/posts/dev-story/modular-request-data-management-concept"

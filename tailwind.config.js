@@ -9,7 +9,7 @@ export default {
     './node_modules/rc-modal-sheet/**/*.js',
     './node_modules/shiro-rc/dist/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  important: true,
+  // important: true,
   theme: {
     extend: {},
   },

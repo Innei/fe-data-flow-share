@@ -51,7 +51,7 @@ export default defineDefaultSlide({
 })`}
       </ShikiHighLighter>
 
-      <p className="fragment text-sm mb-0">
+      <p className="fragment !text-sm !mb-0">
         还好，这里我们早期的需求，也许只有两个 Query
         引用了同一数据，我们明确的知道，我们应该去更新哪些 Query 的数据。
         <br />
