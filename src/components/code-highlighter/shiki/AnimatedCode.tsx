@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import { ShikiHighLighter } from './Shiki'
+import type { BundledLanguage } from 'shiki'
 
 export const AnimatedCode = ({
-  codes,
+  codes: _codes,
   language,
 }: {
   codes: string[]
-  language?: string
+  language?: BundledLanguage
 }) => {
+  const codes = _codes.map((i) => i.replace('// @ts-nocheck\n', '').trim())
   const [step, setStep] = useState(0)
   const [code, setCode] = useState(codes[0])
 

@@ -2,7 +2,8 @@ import { Excalidraw } from '@excalidraw/excalidraw'
 import { useModalStack } from 'rc-modal-sheet'
 import { StyledButton } from 'shiro-rc'
 import { defineDefaultSlide } from '../utils/define-slide'
-
+import Demo2 from './code/QueryStoreFetcher?raw'
+import Demo3 from './code/QueryStoreFetcher2?raw'
 const codes1 = [
   `{
   "view": 0,
@@ -38,58 +39,20 @@ const codes1 = [
   },
   "collections": null,
 }`,
-  `const useFeedStore = create({ data: {} })
-const useEntryStore = create({ data: {} })
-const feed = {
-    "id": "35509196741702656",
-    "title": "在 Nest.js 中使用 Auth.js",
-    "url": "https://innei.in/posts/tech/using-auth-js-in-nestjs",
-    "guid": "https://innei.in/posts/tech/using-auth-js-in-nestjs",
-    "author": "Innei",
-    "authorUrl": null,
-    "authorAvatar": null,
-    "changedAt": "2024-07-15T03:04:27.227Z",
-    "publishedAt": "2024-07-14T06:45:25.000Z",
-    "images": null,
-    "categories": null,
-    "enclosures": null,
-}
-const entry = {
-    "id": "35509196741702656",
-    "title": "在 Nest.js 中使用 Auth.js",
-    "url": "https://innei.in/posts/tech/using-auth-js-in-nestjs",
-    "guid": "https://innei.in/posts/tech/using-auth-js-in-nestjs",
-    "author": "Innei",
-    "authorUrl": null,
-    "authorAvatar": null,
-    "changedAt": "2024-07-15T03:04:27.227Z",
-    "publishedAt": "2024-07-14T06:45:25.000Z",
-    "images": null,
-    "categories": null,
-    "enclosures": null,
-}
-const feedMap = {}, entryMap = {}
-feedMap[feed.id] = feed
-entryMap[entry.id] = entry
-useFeedStore.setState({ data: feedMap }), useEntryStore.setState({ data: entryMap })`,
+  Demo2,
+  Demo3,
   `
 // In UI Component
 // Query Data
 useQuery({
-  queryKey: ['feed', feed.id],
-  queryFn: async () => {
-    const { feed, entry } = await fetcher()
-    const feedMap = {}, entryMap = {}
-    feedMap[feed.id] = feed
-    entryMap[entry.id] = entry
-    useFeedStore.setState({ data: feedMap }), useEntryStore.setState({ data: entryMap })
-  },
+  queryKey: ['entry', entryId],
+  queryFn: storeActions.fetchEntry(entryId)
 })
 // Access Data Store
-const feed = useFeedStore((state) => state.data[feed.id])
-const entry = useEntryStore((state) => state.data[entry.id])
+const feed = useFeedStore((state) => state.data[feedId])
+const entry = useEntryStore((state) => state.data[entryId])
 // Optimize Re-render
-const { title, } = useFeedStore(useShallow((state) => ({ title: state.data[feed.id], /* other need data field */ })))
+const { title, } = useFeedStore(useShallow((state) => ({ title: state.data[feedId], /* other need data field */ })))
 
 `.trim(),
 ]
@@ -162,10 +125,26 @@ export default defineDefaultSlide({
         <Present />
       </p>
 
-      <div className="grid grid-cols-2 gap-4 h-0 grow relative">
+      <div className="grid grid-cols-2 gap-4 h-0 grow relative z-[10]">
         <AnimatedCode codes={codes1} language="typescript" />
         <AnimatedCode codes={codes2} language="typescript" />
       </div>
+
+      <p className="flex flex-col text-xs absolute bottom-0 left-1/2 -translate-x-1/2">
+        参考：
+        <a
+          href="https://innei.in/posts/dev-story/modular-request-data-management-concept"
+          target="_blank"
+        >
+          模块化的请求数据统一管理的构想
+        </a>
+        <a
+          href="https://innei.in/posts/tech/data-management-approach-for-zustand-and-react-query"
+          target="_blank"
+        >
+          一种适用于 Zustand 和 React Query 的前端数据管理方式
+        </a>
+      </p>
     </div>
   ),
 })
