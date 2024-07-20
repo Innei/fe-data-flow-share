@@ -8,7 +8,7 @@ export default defineDefaultSlide({
     <div className="h-full w-full">
       <p>服务端经常返回一些嵌套数据。例如下面的例子。</p>
       <div className="grid grid-cols-2 gap-4">
-        <ShikiHighLighter className="max-h-[9em]" language="json">
+        <ShikiHighLighter className="max-h-[9em] overflow-auto" language="json">
           {`// GET /entries
 {
     "code": 0,
@@ -50,7 +50,7 @@ export default defineDefaultSlide({
     }
 }`}
         </ShikiHighLighter>
-        <ShikiHighLighter className="max-h-[9em]" language="json">
+        <ShikiHighLighter className="max-h-[9em] overflow-auto" language="json">
           {`// GET /entries/:id
 {
     "code": 0,

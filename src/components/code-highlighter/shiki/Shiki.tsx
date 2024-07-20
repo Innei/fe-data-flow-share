@@ -186,8 +186,10 @@ const ShikiCode: FC<
             lang={language!}
             theme={codeTheme}
             options={{
-              duration: 800,
+              duration: 500,
               stagger: 0.3,
+              animateContainer: true,
+              easing: 'ease-in-out',
             }}
           />
         </div>
