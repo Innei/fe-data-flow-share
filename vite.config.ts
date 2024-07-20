@@ -12,4 +12,7 @@ export default defineConfig({
     https: {},
     port: 2233,
   },
+  build: {
+    target: 'esnext',
+  },
 })
