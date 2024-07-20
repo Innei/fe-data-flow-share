@@ -24,7 +24,7 @@ import Markdown from 'reveal.js/plugin/markdown/markdown'
 import Search from 'reveal.js/plugin/search/search'
 
 export const CONFIG = {
-  presentationTitle: '前端数据管理的几种方式',
+  presentationTitle: '面向现代前端数据管理',
   email: 'i@innei.in',
   homepage: 'https://innei.in',
   date: '2024.07',
