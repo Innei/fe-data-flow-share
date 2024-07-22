@@ -70,11 +70,7 @@ const Present = () => {
           title: 'Draw',
           max: true,
           content: () => (
-            <Excalidraw
-              zenModeEnabled
-              viewModeEnabled
-              initialData={Draw as any}
-            />
+            <Excalidraw viewModeEnabled initialData={Draw as any} />
           ),
         })
       }}

@@ -16,12 +16,22 @@ const Present = () => {
           title: 'Draw',
           max: true,
 
-          // @ts-expect-error
-          content: () => <Excalidraw initialData={D1}></Excalidraw>,
+          content: () => (
+            <Excalidraw
+              viewModeEnabled
+              excalidrawAPI={(api) => {
+                setTimeout(() => {
+                  api.scrollToContent(undefined, { fitToContent: true })
+                }, 100)
+              }}
+              // @ts-expect-error
+              initialData={D1}
+            ></Excalidraw>
+          ),
         })
       }}
     >
-      Graph
+      图解
     </StyledButton>
   )
 }

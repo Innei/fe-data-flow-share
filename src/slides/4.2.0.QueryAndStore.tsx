@@ -16,7 +16,6 @@ export default defineDefaultSlide({
 
       <div className="h-0 grow text-base">
         <Excalidraw
-          zenModeEnabled
           viewModeEnabled
           initialData={Draw as any}
         ></Excalidraw>

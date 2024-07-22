@@ -17,7 +17,6 @@ export default defineDefaultSlide({
             )
           }
           initialData={Draw as any}
-          zenModeEnabled
           viewModeEnabled
         />
       </div>
