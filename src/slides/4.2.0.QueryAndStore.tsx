@@ -2,8 +2,7 @@ import { Excalidraw } from '@excalidraw/excalidraw'
 import { defineDefaultSlide } from '../utils/define-slide'
 import Draw from './code/draw2.json'
 export default defineDefaultSlide({
-  autoAnimate: true,
-  title: '数据从何而来？',
+  title: '何为乐观更新',
   content: (
     <div className="h-full w-full flex flex-col">
       <p className="text-xl">
