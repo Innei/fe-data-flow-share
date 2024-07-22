@@ -380,3 +380,9 @@ body {
     background-color: var(--r-background-color);
   }
 }
+.backgrounds {
+  @apply pointer-events-none;
+}
+.present {
+  @apply !pointer-events-auto;
+}

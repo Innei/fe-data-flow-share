@@ -12,7 +12,15 @@ export default defineDefaultSlide({
       <p>那么，如何实现数据的持久化？</p>
 
       <div className="h-0 grow mt-2 text-base">
-        <Excalidraw initialData={Draw as any} zenModeEnabled viewModeEnabled />
+        <Excalidraw
+          excalidrawAPI={(api) => {
+            setTimeout(() => {
+              api.scrollToContent(undefined, { fitToContent: true })
+            }, 100)
+          }}
+          initialData={Draw as any}
+          viewModeEnabled
+        />
       </div>
     </div>
   ),

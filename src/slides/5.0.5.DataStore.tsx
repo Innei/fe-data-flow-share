@@ -5,7 +5,7 @@ export default defineDefaultSlide({
   title: 'Data Flow Summary',
   content: (
     <div className="h-full w-full flex flex-col">
-      <div className="h-0 grow mt-2 text-base">
+      <div className="h-0 grow mt-2 text-base z-[100]">
         <Excalidraw
           excalidrawAPI={(api) =>
             setTimeout(
